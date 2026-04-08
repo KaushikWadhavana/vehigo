@@ -74,7 +74,7 @@ useEffect(() => {
       const token = await currentUser.getIdToken();
 
       const res = await fetch(
-        `http://localhost:5000/api/profile/${currentUser.uid}`,
+        `${import.meta.env.VITE_API_URL}/api/profile/${currentUser.uid}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -102,7 +102,7 @@ useEffect(() => {
       const token = await currentUser.getIdToken();
 
       const res = await fetch(
-        `http://localhost:5000/api/profile/${currentUser.uid}`,
+        `${import.meta.env.VITE_API_URL}/api/profile/${currentUser.uid}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -118,7 +118,7 @@ const fetchEnquiryCount = async () => {
   const token = await auth.currentUser.getIdToken();
 
   const res = await fetch(
-    "http://localhost:5000/api/enquiry/admin",
+    "${import.meta.env.VITE_API_URL}/api/enquiry/admin",
     {
       headers: {
         Authorization: `Bearer ${token}`,

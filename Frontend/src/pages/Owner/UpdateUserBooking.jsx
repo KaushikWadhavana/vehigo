@@ -21,7 +21,7 @@ const [reasonModal, setReasonModal] = useState({
     const token = await auth.currentUser.getIdToken();
 
     const res = await fetch(
-      "http://localhost:5000/api/bookings/owner-bookings",
+      "${import.meta.env.VITE_API_URL}/api/bookings/owner-bookings",
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -65,7 +65,7 @@ const save = async () => {
   const token = await auth.currentUser.getIdToken();
 
   const res = await fetch(
-    `http://localhost:5000/api/bookings/owner-update/${id}`,
+    `${import.meta.env.VITE_API_URL}/api/bookings/owner-update/${id}`,
     {
       method: "PUT",
       headers: {

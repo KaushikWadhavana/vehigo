@@ -68,7 +68,7 @@ useEffect(() => {
       const token = await firebaseUser.getIdToken();
 
       const profileRes = await axios.get(
-        `http://localhost:5000/api/profile/${firebaseUser.uid}`,
+        `${import.meta.env.VITE_API_URL}/api/profile/${firebaseUser.uid}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -96,7 +96,7 @@ useEffect(() => {
       const token = await firebaseUser.getIdToken();
 
       const res = await axios.get(
-        "http://localhost:5000/api/owner/my-request",
+        "${import.meta.env.VITE_API_URL}/api/owner/my-request",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -159,7 +159,7 @@ if (!/^[0-9]{10}$/.test(profile.phone)) {
     const token = await firebaseUser.getIdToken();
 
     const res = await axios.put(
-      `http://localhost:5000/api/profile/${firebaseUser.uid}`,
+      `${import.meta.env.VITE_API_URL}/api/profile/${firebaseUser.uid}`,
       profile,
       {
         headers: {
@@ -250,7 +250,7 @@ const handleConnectGoogle = async () => {
     const token = await firebaseUser.getIdToken(true);
 
     const updatedProfile = await axios.put(
-      `http://localhost:5000/api/profile/${firebaseUser.uid}`,
+      `${import.meta.env.VITE_API_URL}/api/profile/${firebaseUser.uid}`,
       {
         name: googleName,
         profileImage: googlePhoto,
@@ -306,7 +306,7 @@ const handleImageChange = async (e) => {
     const token = await firebaseUser.getIdToken();
 
     const res = await axios.post(
-      `http://localhost:5000/api/profile/upload-image/${firebaseUser.uid}`,
+      `${import.meta.env.VITE_API_URL}/api/profile/upload-image/${firebaseUser.uid}`,
       formData,
       {
         headers: {
@@ -373,7 +373,7 @@ const handleDeleteAccount = async () => {
       const token = await firebaseUser.getIdToken();
 
       await axios.delete(
-        `http://localhost:5000/api/security/delete/${firebaseUser.uid}`,
+        `${import.meta.env.VITE_API_URL}/api/security/delete/${firebaseUser.uid}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -406,7 +406,7 @@ const handleDeactivate = async () => {
     const token = await firebaseUser.getIdToken();
 
     await axios.put(
-      `http://localhost:5000/api/security/deactivate/${firebaseUser.uid}`,
+      `${import.meta.env.VITE_API_URL}/api/security/deactivate/${firebaseUser.uid}`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -453,7 +453,7 @@ const handleOwnerRequest = async () => {
     const token = await firebaseUser.getIdToken();
 
     const res = await axios.post(
-      "http://localhost:5000/api/owner/request",
+      "${import.meta.env.VITE_API_URL}/api/owner/request",
       { requestedEmail: ownerEmail },
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -469,7 +469,7 @@ const handleOwnerRequest = async () => {
     setOwnerEmail("");
 
     const refresh = await axios.get(
-      "http://localhost:5000/api/owner/my-request",
+      "${import.meta.env.VITE_API_URL}/api/owner/my-request",
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -496,7 +496,7 @@ const handleOwnerPayment = async () => {
     const token = await firebaseUser.getIdToken();
 
     const { data } = await axios.post(
-      "http://localhost:5000/api/owner/payment/create-order",
+      "${import.meta.env.VITE_API_URL}/api/owner/payment/create-order",
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -514,7 +514,7 @@ const handleOwnerPayment = async () => {
       handler: async function (response) {
         try {
           await axios.post(
-            "http://localhost:5000/api/owner/payment/verify",
+            "${import.meta.env.VITE_API_URL}/api/owner/payment/verify",
             response,
             {
               headers: { Authorization: `Bearer ${token}` },
@@ -524,7 +524,7 @@ const handleOwnerPayment = async () => {
           Swal.fire("Success", "Payment Successful", "success");
           // 🔥 REFRESH OWNER REQUEST DATA
 const refresh = await axios.get(
-  "http://localhost:5000/api/owner/my-request",
+  "${import.meta.env.VITE_API_URL}E_API_URL}E_API_URL}E_API_URL}E_API_URL}E_API_URL}E_API_URL}/api/owner/my-request",
   {
     headers: { Authorization: `Bearer ${token}` },
   }

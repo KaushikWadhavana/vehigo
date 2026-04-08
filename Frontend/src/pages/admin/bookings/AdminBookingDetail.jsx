@@ -22,7 +22,7 @@ const [reasonModal, setReasonModal] = useState({
     const token = await auth.currentUser.getIdToken();
 
     const res = await fetch(
-      "http://localhost:5000/api/bookings/admin-bookings",
+      "${import.meta.env.VITE_API_URL}/api/bookings/admin-bookings",
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
@@ -64,7 +64,7 @@ const handleEdit = () => {
     const token = await auth.currentUser.getIdToken();
 
     const res = await fetch(
-      `http://localhost:5000/api/bookings/admin-update/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/bookings/admin-update/${id}`,
       {
         method: "PUT",
         headers: {

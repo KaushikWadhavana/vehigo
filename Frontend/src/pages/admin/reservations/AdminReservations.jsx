@@ -91,7 +91,7 @@ navigate("/admin/reservations/new", {
 const uid = auth.currentUser.uid;
 
 const res = await fetch(
-  `http://localhost:5000/api/reservations/locations/${uid}`
+  `${import.meta.env.VITE_API_URL}/api/reservations/locations/${uid}`
 );
   const data = await res.json();
 
@@ -116,7 +116,7 @@ const res = await fetch(
 const uid = auth.currentUser.uid;
 
 const res = await fetch(
-  `http://localhost:5000/api/reservations/owner/${uid}?${params}`
+  `${import.meta.env.VITE_API_URL}/api/reservations/owner/${uid}?${params}`
 );
       const data = await res.json();
       if (Array.isArray(data)) {
@@ -236,7 +236,7 @@ const submitReject = async () => {
   try {
     const token = await auth.currentUser.getIdToken();
 
-    await fetch(`http://localhost:5000/api/reservations/reject/${rejectId}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/reservations/reject/${rejectId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

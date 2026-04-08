@@ -104,7 +104,7 @@ useEffect(() => {
 useEffect(() => {
   const fetchLocations = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/listing");
+      const res = await fetch("${import.meta.env.VITE_API_URL}/api/listing");
       const data = await res.json();
       setLocations(data);
     } catch (err) {
@@ -298,7 +298,7 @@ const handleReturnTimeChange = (v) => {
 const fetchRandomListings = async () => {
   try {
     const res = await fetch(
-      "http://localhost:5000/api/listing/random"
+      "${import.meta.env.VITE_API_URL}/api/listing/random"
     );
 
     const data = await res.json();
@@ -422,7 +422,7 @@ onChange={async (e) => {
   try {
 
     const res = await fetch(
-      `http://localhost:5000/api/listing/location-suggestions?search=${value}`
+      `${import.meta.env.VITE_API_URL}/api/listing/location-suggestions?search=${value}`
     );
 
     const data = await res.json();

@@ -319,7 +319,7 @@ useEffect(() => {
   const fetchRandom = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/listing/random?excludeId=${id}`
+        `${import.meta.env.VITE_API_URL}/api/listing/random?excludeId=${id}`
       );
 
       const result = await res.json();
@@ -339,7 +339,7 @@ useEffect(() => {
   const fetchDetail = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/vehicle-detail/${id}`
+        `${import.meta.env.VITE_API_URL}/api/vehicle-detail/${id}`
       );
       setData(res.data);
     } catch (err) {
@@ -361,7 +361,7 @@ useEffect(() => {
       const token = await user.getIdToken();
 
       const res = await axios.get(
-        `http://localhost:5000/api/profile/${user.uid}`,
+        `${import.meta.env.VITE_API_URL}/api/profile/${user.uid}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -462,7 +462,7 @@ if (comment.length > 250) {
     });
 
     const res = await axios.post(
-      "http://localhost:5000/api/vehicle-detail/review",
+      "${import.meta.env.VITE_API_URL}/api/vehicle-detail/review",
       {
         vehicleId: id,
         vehicleType: data.type,
@@ -580,7 +580,7 @@ const submitEnquiry = async () => {
     const token = await user.getIdToken();
 
     await axios.post(
-      "http://localhost:5000/api/enquiry/create",
+      "${import.meta.env.VITE_API_URL}/api/enquiry/create",
       {
         listingId: data._id,
         listingType: data.type,
@@ -629,7 +629,7 @@ const submitReply = async (reviewId) => {
     const token = await user.getIdToken();
 
     await axios.post(
-      "http://localhost:5000/api/vehicle-detail/reply",
+      "${import.meta.env.VITE_API_URL}/api/vehicle-detail/reply",
       {
         reviewId,
         message: replyMsg,
@@ -1809,7 +1809,7 @@ try {
   });
 
   const res = await axios.post(
-    "http://localhost:5000/api/vehicle-detail/check-availability",
+    "${import.meta.env.VITE_API_URL}/api/vehicle-detail/check-availability",
     {
       listingId: id,
       pickupDate: start,

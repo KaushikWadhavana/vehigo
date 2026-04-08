@@ -31,7 +31,7 @@ export default function AdminCustomers() {
     const token = await auth.currentUser.getIdToken();
 
     const res = await axios.get(
-      "http://localhost:5000/api/admin/customers",
+      "${import.meta.env.VITE_API_URL}/api/admin/customers",
       {
         headers: { Authorization: `Bearer ${token}` },
         params: { search, sort, role, date },
@@ -76,7 +76,7 @@ export default function AdminCustomers() {
     const token = await auth.currentUser.getIdToken();
 
     await axios.delete(
-      `http://localhost:5000/api/admin/customers/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/admin/customers/${id}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

@@ -26,7 +26,7 @@ const fetchPayments = async () => {
 
   // ✅ BOOKING PAYMENTS
   const bookingRes = await axios.get(
-    "http://localhost:5000/api/bookings/my-bookings",
+    "${import.meta.env.VITE_API_URL}/api/bookings/my-bookings",
     {
       headers: { Authorization: `Bearer ${token}` },
     }
@@ -34,13 +34,13 @@ const fetchPayments = async () => {
 
   // ✅ OWNER REQUEST PAYMENTS (NEW API)
   const ownerRes = await axios.get(
-    "http://localhost:5000/api/owner/my-payment",
+    "${import.meta.env.VITE_API_URL}/api/owner/my-payment",
     {
       headers: { Authorization: `Bearer ${token}` },
     }
   );
   const reservationRes = await axios.get(
-  "http://localhost:5000/api/reservations/my-payments",
+  "${import.meta.env.VITE_API_URL}/api/reservations/my-payments",
   {
     headers: { Authorization: `Bearer ${token}` },
   }
@@ -139,7 +139,7 @@ useEffect(() => {
       const token = await auth.currentUser.getIdToken();
 
       const res = await axios.get(
-        "http://localhost:5000/api/owner/my-request",
+        "${import.meta.env.VITE_API_URL}/api/owner/my-request",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -266,7 +266,7 @@ const handleOwnerPayment = async () => {
 
     // CREATE ORDER
     const { data: order } = await axios.post(
-      "http://localhost:5000/api/owner/payment/create-order",
+      "${import.meta.env.VITE_API_URL}/api/owner/payment/create-order",
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -281,7 +281,7 @@ const handleOwnerPayment = async () => {
 
       handler: async function (response) {
         await axios.post(
-          "http://localhost:5000/api/owner/payment/verify",
+          "${import.meta.env.VITE_API_URL}/api/owner/payment/verify",
           response,
           {
             headers: { Authorization: `Bearer ${token}` },

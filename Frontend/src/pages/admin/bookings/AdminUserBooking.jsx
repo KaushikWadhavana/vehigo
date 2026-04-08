@@ -53,7 +53,7 @@ const fetchUsers = async () => {
     const token = await auth.currentUser.getIdToken();
 
     const res = await fetch(
-      "http://localhost:5000/api/bookings/admin-bookings",
+      "${import.meta.env.VITE_API_URL}/api/bookings/admin-bookings",
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -140,7 +140,7 @@ const handleDelete = async (booking) => {
     const token = await auth.currentUser.getIdToken();
 
     await fetch(
-      `http://localhost:5000/api/bookings/admin-delete/${booking._id}`,
+      `${import.meta.env.VITE_API_URL}/api/bookings/admin-delete/${booking._id}`,
       {
         method: "DELETE",
         headers: {
@@ -168,7 +168,7 @@ const handleRejectSubmit = async () => {
     const token = await auth.currentUser.getIdToken();
 
     await fetch(
-      `http://localhost:5000/api/bookings/owner-action/${booking._id}`,
+      `${import.meta.env.VITE_API_URL}/api/bookings/owner-action/${booking._id}`,
       {
         method: "PUT",
         headers: {

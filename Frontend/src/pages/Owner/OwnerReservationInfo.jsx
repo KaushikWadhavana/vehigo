@@ -15,7 +15,7 @@ export default function OwnerReservationInfo() {
   const [toll, setToll] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/reservations/${id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/reservations/${id}`)
       .then(res => res.json())
       .then((resData) => {
 
@@ -37,7 +37,7 @@ const handleAddToll = async () => {
   try {
     const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch(`http://localhost:5000/api/reservations/add-toll/${id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/reservations/add-toll/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -78,7 +78,7 @@ const handleMarkPaid = async () => {
     const token = await auth.currentUser.getIdToken();
 
     const res = await fetch(
-      `http://localhost:5000/api/reservations/mark-paid/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/reservations/mark-paid/${id}`,
       {
         method: "PUT",
         headers: {

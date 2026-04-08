@@ -154,7 +154,7 @@ const [selectedPayment, setSelectedPayment] = useState("razorpay");
     const fetchVehicle = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/vehicle-detail/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/vehicle-detail/${id}`,
         );
         setVehicle(res.data);
       } catch (err) {
@@ -374,7 +374,7 @@ if (diffMs < 60 * 60 * 1000) {
 try {
 
   const check = await axios.post(
-    "http://localhost:5000/api/vehicle-detail/check-availability",
+    "${import.meta.env.VITE_API_URL}/api/vehicle-detail/check-availability",
     {
       listingId: id,
       pickupDate: startDateTime,
@@ -460,7 +460,7 @@ if (driverPhoto) {
   fd.append("driverPhoto", driverPhoto);
 }
 const res = await axios.post(
-  "http://localhost:5000/api/bookings",
+  "${import.meta.env.VITE_API_URL}/api/bookings",
   fd,
   {
     headers: {
@@ -569,7 +569,7 @@ const useProfileInfo = async () => {
     const token = await user.getIdToken();
 
     const res = await axios.get(
-      `http://localhost:5000/api/profile/${user.uid}`,
+      `${import.meta.env.VITE_API_URL}/api/profile/${user.uid}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -613,7 +613,7 @@ const handleRazorpayPayment = async () => {
     }
 
     const res = await axios.post(
-      "http://localhost:5000/api/payment/create-orders",
+      "${import.meta.env.VITE_API_URL}/api/payment/create-orders",
       { amount: grandTotal }
     );
 
@@ -666,7 +666,7 @@ const options = {
 handler: async function (response) {
 
   const verify = await axios.post(
-    "http://localhost:5000/api/payment/verify-payment",
+    "${import.meta.env.VITE_API_URL}/api/payment/verify-payment",
     {
       razorpay_order_id: response.razorpay_order_id,
       razorpay_payment_id: response.razorpay_payment_id,

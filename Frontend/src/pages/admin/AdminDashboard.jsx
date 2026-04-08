@@ -57,7 +57,7 @@ useEffect(() => {
     const token = await auth.currentUser.getIdToken();
 
     const res = await axios.get(
-      "http://localhost:5000/api/owner-dashboard",
+      "${import.meta.env.VITE_API_URL}/api/owner-dashboard",
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -70,7 +70,7 @@ useEffect(() => {
   const token = await auth.currentUser.getIdToken();
 
   const res = await axios.get(
-    "http://localhost:5000/api/owner-dashboard/top-customers",
+    "${import.meta.env.VITE_API_URL}/api/owner-dashboard/top-customers",
     {
       headers: { Authorization: `Bearer ${token}` },
     }
@@ -83,7 +83,7 @@ const fetchWeekly = async () => {
   const token = await auth.currentUser.getIdToken();
 
   const res = await axios.get(
-    `http://localhost:5000/api/owner-dashboard/weekly-income?range=${range}`,
+    `${import.meta.env.VITE_API_URL}/api/owner-dashboard/weekly-income?range=${range}`,
     {
       headers: { Authorization: `Bearer ${token}` },
     }
@@ -104,7 +104,7 @@ const fetchRecentBookings = async () => {
   const token = await auth.currentUser.getIdToken();
 
   const res = await axios.get(
-    "http://localhost:5000/api/owner-dashboard/recent-bookings",
+    "${import.meta.env.VITE_API_URL}/api/owner-dashboard/recent-bookings",
     {
       headers: { Authorization: `Bearer ${token}` },
     }

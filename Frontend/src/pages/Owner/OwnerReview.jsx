@@ -36,7 +36,7 @@ const navigate = useNavigate();
       try {
         const token = await user.getIdToken();
 const res = await axios.get(
-  `http://localhost:5000/api/vehicle-detail/owner/reviews?userId=${user.uid}`,
+  `${import.meta.env.VITE_API_URL}/api/vehicle-detail/owner/reviews?userId=${user.uid}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -105,7 +105,7 @@ const res = await axios.get(
       const token = await auth.currentUser.getIdToken();
 
 await axios.delete(
-  `http://localhost:5000/api/vehicle-detail/user/review/${id}`,
+  `${import.meta.env.VITE_API_URL}/api/vehicle-detail/user/review/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

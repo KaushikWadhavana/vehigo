@@ -30,7 +30,7 @@ if (user.emailVerified) {
 
   const token = await user.getIdToken(true);
 
-  const res = await fetch("http://localhost:5000/api/auth/sync", {
+  const res = await fetch("${import.meta.env.VITE_API_URL}/api/auth/sync", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

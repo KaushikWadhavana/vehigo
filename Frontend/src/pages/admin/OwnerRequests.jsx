@@ -55,7 +55,7 @@ useEffect(() => {
       const token = await firebaseUser.getIdToken();
 
       const res = await axios.get(
-        "http://localhost:5000/api/owner/all",
+        "${import.meta.env.VITE_API_URL}/api/owner/all",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -107,7 +107,7 @@ const handleAction = async (id, status) => {
     const token = await firebaseUser.getIdToken();
 
     await axios.put(
-      `http://localhost:5000/api/owner/status/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/owner/status/${id}`,
       { status, reason }, // ✅ SEND REASON
       {
         headers: { Authorization: `Bearer ${token}` },

@@ -56,7 +56,7 @@ useEffect(() => {
       const token = await firebaseUser.getIdToken();
 
       const profileRes = await axios.get(
-        `http://localhost:5000/api/profile/${firebaseUser.uid}`,
+        `${import.meta.env.VITE_API_URL}/api/profile/${firebaseUser.uid}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -99,7 +99,7 @@ if (!/^[0-9]{10}$/.test(profile.phone)) {
     const token = await firebaseUser.getIdToken();
 
     const res = await axios.put(
-      `http://localhost:5000/api/profile/${firebaseUser.uid}`,
+      `${import.meta.env.VITE_API_URL}/api/profile/${firebaseUser.uid}`,
       profile,
       {
         headers: {
@@ -173,7 +173,7 @@ const handleImageChange = async (e) => {
     const token = await firebaseUser.getIdToken();
 
     const res = await axios.post(
-      `http://localhost:5000/api/profile/upload-image/${firebaseUser.uid}`,
+      `${import.meta.env.VITE_API_URL}/api/profile/upload-image/${firebaseUser.uid}`,
       formData,
       {
         headers: {
@@ -241,7 +241,7 @@ const handleDeleteAccount = async () => {
       const token = await firebaseUser.getIdToken();
 
       await axios.delete(
-        `http://localhost:5000/api/security/delete/${firebaseUser.uid}`,
+        `${import.meta.env.VITE_API_URL}/api/security/delete/${firebaseUser.uid}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -274,7 +274,7 @@ const handleDeactivate = async () => {
     const token = await firebaseUser.getIdToken();
 
     await axios.put(
-      `http://localhost:5000/api/security/deactivate/${firebaseUser.uid}`,
+      `${import.meta.env.VITE_API_URL}/api/security/deactivate/${firebaseUser.uid}`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },

@@ -53,7 +53,7 @@ useEffect(() => {
       const token = await firebaseUser.getIdToken();
 
       const res = await axios.get(
-        `http://localhost:5000/api/profile/${firebaseUser.uid}`,
+        `${import.meta.env.VITE_API_URL}/api/profile/${firebaseUser.uid}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -240,7 +240,7 @@ if (!user) {
 const token = await user.getIdToken();
 
 await axios.post(
-  "http://localhost:5000/api/vehicles",
+  "${import.meta.env.VITE_API_URL}/api/vehicles",
   fd,
   {
     headers: {

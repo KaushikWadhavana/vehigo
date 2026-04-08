@@ -163,7 +163,7 @@ const calculatedEndDate = (() => {
 })();
 
     const res = await fetch(
-      "http://localhost:5000/api/reservations/vehicles-status",
+      "${import.meta.env.VITE_API_URL}/api/reservations/vehicles-status",
       {
         method: "POST",
         headers: {
@@ -655,7 +655,7 @@ const loadCustomer = async () => {
 
 try{
 
-const res = await fetch("http://localhost:5000/api/reservations/customers")
+const res = await fetch("${import.meta.env.VITE_API_URL}/api/reservations/customers")
 const data = await res.json()
 
 const found = data.find(c => c._id === selectedCustomer)
@@ -1091,7 +1091,7 @@ const loadCustomers = async () => {
 
 try{
 
-const res = await fetch("http://localhost:5000/api/reservations/customers")
+const res = await fetch("${import.meta.env.VITE_API_URL}/api/reservations/customers")
 const data = await res.json()
 
 setCustomers(data)
@@ -1894,7 +1894,7 @@ if (requestData) {
 
   const token = await auth.currentUser.getIdToken();
 const res = await fetch(
-  `http://localhost:5000/api/reservations/approve/${requestData._id}`,
+  `${import.meta.env.VITE_API_URL}/api/reservations/approve/${requestData._id}`,
   {
     method: "PUT",
     headers: {
@@ -1928,7 +1928,7 @@ const formattedExtras = (selectedExtras || []).map(e => ({
   type: e.type
 }));
 
-const res = await fetch("http://localhost:5000/api/reservations",{
+const res = await fetch("${import.meta.env.VITE_API_URL}/api/reservations",{
 
 method:"POST",
 

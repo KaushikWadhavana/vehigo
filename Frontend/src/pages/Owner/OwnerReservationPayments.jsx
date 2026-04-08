@@ -29,7 +29,7 @@ export default function OwnerReservationPayments() {
 const uid = auth.currentUser.uid;
 
 const res = await axios.get(
-  `http://localhost:5000/api/reservations/owner/${uid}`
+  `${import.meta.env.VITE_API_URL}/api/reservations/owner/${uid}`
 );
 
     setPayments(res.data);

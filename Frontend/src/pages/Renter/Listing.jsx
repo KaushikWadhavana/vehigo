@@ -176,7 +176,7 @@ if (selectedFilters.maxPrice)
   params.append("maxPrice", selectedFilters.maxPrice);
 
   const res = await fetch(
-    `http://localhost:5000/api/listing/search?${params}`
+    `${import.meta.env.VITE_API_URL}/api/listing/search?${params}`
   );
 
   const data = await res.json();
@@ -228,7 +228,7 @@ useEffect(() => {
 
 useEffect(() => {
   const loadFilters = async () => {
-    const res = await fetch("http://localhost:5000/api/listing/filters");
+    const res = await fetch("${import.meta.env.VITE_API_URL}/api/listing/filters");
     const data = await res.json();
     setFilters(data);
   };
@@ -249,7 +249,7 @@ useEffect(() => {
 useEffect(() => {
   const fetchLocations = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/listing");
+      const res = await fetch("${import.meta.env.VITE_API_URL}/api/listing");
       const data = await res.json();
       setLocations(data);
     } catch (err) {
@@ -447,7 +447,7 @@ if (!value) {
   try {
 
     const res = await fetch(
-      `http://localhost:5000/api/listing/location-suggestions?search=${value}`
+      `${import.meta.env.VITE_API_URL}/api/listing/location-suggestions?search=${value}`
     );
 
     const data = await res.json();
@@ -780,7 +780,7 @@ if (diffDays > 365) {
 
         try {
           const res = await fetch(
-            `http://localhost:5000/api/listing/suggestions?search=${value}
+            `${import.meta.env.VITE_API_URL}/api/listing/suggestions?search=${value}
 `
           );
 

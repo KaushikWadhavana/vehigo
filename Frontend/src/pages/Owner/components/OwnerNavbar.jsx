@@ -125,7 +125,7 @@ const menuItems = [
       const token = await auth.currentUser.getIdToken();
 
       const res = await fetch(
-        `http://localhost:5000/api/profile/${auth.currentUser.uid}`,
+        `${import.meta.env.VITE_API_URL}/api/profile/${auth.currentUser.uid}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -149,7 +149,7 @@ const fetchEnquiryCount = async () => {
   const token = await auth.currentUser.getIdToken();
 
   const res = await fetch(
-    "http://localhost:5000/api/enquiry/owner",
+    "${import.meta.env.VITE_API_URL}E_API_URL}E_API_URL}/api/enquiry/owner",
     {
       headers: {
         Authorization: `Bearer ${token}`,

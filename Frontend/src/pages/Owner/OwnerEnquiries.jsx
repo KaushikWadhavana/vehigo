@@ -34,7 +34,7 @@ const [loadingReply, setLoadingReply] = useState(false);
     try {
       const token = await auth.currentUser.getIdToken();
 
-      const res = await fetch("http://localhost:5000/api/enquiry/owner", {
+      const res = await fetch("${import.meta.env.VITE_API_URL}/api/enquiry/owner", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -86,7 +86,7 @@ const viewEnquiry = async (e) => {
     const token = await auth.currentUser.getIdToken();
 
     await fetch(
-      `http://localhost:5000/api/enquiry/status/${e._id}`,
+      `${import.meta.env.VITE_API_URL}/api/enquiry/status/${e._id}`,
       {
         method: "PUT",
         headers: {
@@ -144,7 +144,7 @@ const sendReply = async () => {
     setLoadingReply(true); // ✅ START LOADING
 
     const res = await fetch(
-      `http://localhost:5000/api/enquiry/reply/${selected._id}`,
+      `${import.meta.env.VITE_API_URL}/api/enquiry/reply/${selected._id}`,
       {
         method: "PUT",
         headers: {
@@ -199,7 +199,7 @@ const sendReply = async () => {
   const markReplied = async (id) => {
     const token = await auth.currentUser.getIdToken();
 
-    await fetch(`http://localhost:5000/api/enquiry/status/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/enquiry/status/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -226,7 +226,7 @@ const sendReply = async () => {
 
     const token = await auth.currentUser.getIdToken();
 
-    await fetch(`http://localhost:5000/api/enquiry/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/enquiry/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

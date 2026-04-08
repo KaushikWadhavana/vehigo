@@ -48,7 +48,7 @@ useEffect(() => {
         const token = await user.getIdToken();
 
         const res = await axios.get(
-          `http://localhost:5000/api/bookings/my-bookings`,
+          `${import.meta.env.VITE_API_URL}/api/bookings/my-bookings`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -223,7 +223,7 @@ const confirm = await Swal.fire({
     const token = await auth.currentUser.getIdToken();
 
     await axios.put(
-      `http://localhost:5000/api/bookings/cancel/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/bookings/cancel/${id}`,
       {},
       { headers: { Authorization: `Bearer ${token}` } }
     );
