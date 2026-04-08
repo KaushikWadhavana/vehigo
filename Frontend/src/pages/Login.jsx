@@ -35,7 +35,7 @@ function Login() {
 
       // 📱 Phone number login support
       if (/^[0-9]{10}$/.test(identifier)) {
-        const phoneRes = await fetch('${import.meta.env.VITE_API_URL}/api/auth/find-email', {
+        const phoneRes = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/find-email`, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ phone: identifier }),
@@ -82,7 +82,7 @@ if (
 
       // 🔐 Sync user with backend & get role
 const token = await auth.currentUser.getIdToken(true);
-    const syncRes = await fetch('${import.meta.env.VITE_API_URL}/api/auth/sync', {
+    const syncRes = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/sync`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -126,7 +126,7 @@ const handleGoogleLogin = async () => {
     const result = await signInWithPopup(auth, provider);
 
     const token = await result.user.getIdToken();
-    const checkRes = await fetch('${import.meta.env.VITE_API_URL}/api/auth/check-user', {
+    const checkRes = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/check-user`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -191,7 +191,7 @@ if (user.role === "admin") {
 });
 
         const token = await userCredential.user.getIdToken();
-        const checkRes = await fetch('${import.meta.env.VITE_API_URL}/api/auth/check-user', {
+        const checkRes = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/check-user`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
