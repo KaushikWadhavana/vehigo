@@ -88,7 +88,7 @@ const reservationsPerPage = 5;
     const token = await auth.currentUser.getIdToken();
 
     const res = await axios.post(
-      "${import.meta.env.VITE_API_URL}/api/reservations/vehicles-status",
+      `${import.meta.env.VITE_API_URL}/api/reservations/vehicles-status`,
       {
         startDate: new Date(),
         endDate: new Date(),
@@ -105,7 +105,7 @@ const fetchReservations = async () => {
   const token = await auth.currentUser.getIdToken();
 
   const res = await axios.get(
-    "${import.meta.env.VITE_API_URL}/api/reservations/my-reservations",
+    `${import.meta.env.VITE_API_URL}/api/reservations/my-reservations`,
     { headers: { Authorization: `Bearer ${token}` } }
   );
 
@@ -236,7 +236,7 @@ useEffect(() => {
     const token = await auth.currentUser.getIdToken();
 
     const res = await axios.post(
-      "${import.meta.env.VITE_API_URL}/api/reservations/vehicles-status",
+      `${import.meta.env.VITE_API_URL}/api/reservations/vehicles-status`,
       { startDate, endDate },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -355,7 +355,7 @@ if (Number(rentalDays) < 1 || Number(rentalDays) > 30) {
 try {
 
   const check = await axios.post(
-    "${import.meta.env.VITE_API_URL}/api/reservations/vehicles-status",
+    `${import.meta.env.VITE_API_URL}/api/reservations/vehicles-status`,
     {
       startDate,
       endDate
@@ -397,7 +397,7 @@ try {
   return;
 }
 const res = await axios.post(
-  "${import.meta.env.VITE_API_URL}/api/reservations/user",
+  `${import.meta.env.VITE_API_URL}/api/reservations/user`,
   {
     vehicleIds: [selectedVehicle._id],
     startDate,
@@ -553,7 +553,7 @@ if (value === "pickup") {
 // 🔥 STEP 1: CHECK FIRST
 try {
   await axios.post(
-    "${import.meta.env.VITE_API_URL}/api/reservations/verify-payment",
+    `${import.meta.env.VITE_API_URL}/api/reservations/verify-payment`,
     {
       reservationId: selectedReservation._id,
       checkOnly: true
@@ -587,7 +587,7 @@ handler: async function (response) {
   try {
 
     await axios.post(
-      "${import.meta.env.VITE_API_URL}/api/reservations/verify-payment",
+      `${import.meta.env.VITE_API_URL}/api/reservations/verify-payment`,
       {
         reservationId: selectedReservation._id,
         razorpay_order_id: response.razorpay_order_id,

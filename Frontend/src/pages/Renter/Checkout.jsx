@@ -374,7 +374,7 @@ if (diffMs < 60 * 60 * 1000) {
 try {
 
   const check = await axios.post(
-    "${import.meta.env.VITE_API_URL}/api/vehicle-detail/check-availability",
+    `${import.meta.env.VITE_API_URL}/api/vehicle-detail/check-availability`,
     {
       listingId: id,
       pickupDate: startDateTime,
@@ -460,7 +460,7 @@ if (driverPhoto) {
   fd.append("driverPhoto", driverPhoto);
 }
 const res = await axios.post(
-  "${import.meta.env.VITE_API_URL}/api/bookings",
+  `${import.meta.env.VITE_API_URL}/api/bookings`,
   fd,
   {
     headers: {
@@ -613,7 +613,7 @@ const handleRazorpayPayment = async () => {
     }
 
     const res = await axios.post(
-      "${import.meta.env.VITE_API_URL}/api/payment/create-orders",
+      `${import.meta.env.VITE_API_URL}/api/payment/create-orders`,
       { amount: grandTotal }
     );
 
@@ -666,7 +666,7 @@ const options = {
 handler: async function (response) {
 
   const verify = await axios.post(
-    "${import.meta.env.VITE_API_URL}/api/payment/verify-payment",
+    `${import.meta.env.VITE_API_URL}/api/payment/verify-payment`,
     {
       razorpay_order_id: response.razorpay_order_id,
       razorpay_payment_id: response.razorpay_payment_id,

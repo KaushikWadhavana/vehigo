@@ -96,7 +96,7 @@ useEffect(() => {
       const token = await firebaseUser.getIdToken();
 
       const res = await axios.get(
-        "${import.meta.env.VITE_API_URL}/api/owner/my-request",
+        `${import.meta.env.VITE_API_URL}/api/owner/my-request`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -453,7 +453,7 @@ const handleOwnerRequest = async () => {
     const token = await firebaseUser.getIdToken();
 
     const res = await axios.post(
-      "${import.meta.env.VITE_API_URL}/api/owner/request",
+      `${import.meta.env.VITE_API_URL}/api/owner/request`,
       { requestedEmail: ownerEmail },
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -469,7 +469,7 @@ const handleOwnerRequest = async () => {
     setOwnerEmail("");
 
     const refresh = await axios.get(
-      "${import.meta.env.VITE_API_URL}/api/owner/my-request",
+      `${import.meta.env.VITE_API_URL}/api/owner/my-request`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -496,7 +496,7 @@ const handleOwnerPayment = async () => {
     const token = await firebaseUser.getIdToken();
 
     const { data } = await axios.post(
-      "${import.meta.env.VITE_API_URL}/api/owner/payment/create-order",
+      `${import.meta.env.VITE_API_URL}/api/owner/payment/create-order`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -514,7 +514,7 @@ const handleOwnerPayment = async () => {
       handler: async function (response) {
         try {
           await axios.post(
-            "${import.meta.env.VITE_API_URL}/api/owner/payment/verify",
+            `${import.meta.env.VITE_API_URL}/api/owner/payment/verify`,
             response,
             {
               headers: { Authorization: `Bearer ${token}` },
@@ -524,7 +524,7 @@ const handleOwnerPayment = async () => {
           Swal.fire("Success", "Payment Successful", "success");
           // 🔥 REFRESH OWNER REQUEST DATA
 const refresh = await axios.get(
-  "${import.meta.env.VITE_API_URL}E_API_URL}E_API_URL}E_API_URL}E_API_URL}E_API_URL}E_API_URL}/api/owner/my-request",
+  `${import.meta.env.VITE_API_URL}/api/owner/my-request`,
   {
     headers: { Authorization: `Bearer ${token}` },
   }

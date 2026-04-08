@@ -23,7 +23,7 @@ const fetchData = async () => {
     const token = await auth.currentUser.getIdToken();
 
     const res = await fetch(
-      "${import.meta.env.VITE_API_URL}/api/enquiry/user",
+      `${import.meta.env.VITE_API_URL}/api/enquiry/user`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

@@ -462,7 +462,7 @@ if (comment.length > 250) {
     });
 
     const res = await axios.post(
-      "${import.meta.env.VITE_API_URL}/api/vehicle-detail/review",
+      `${import.meta.env.VITE_API_URL}/api/vehicle-detail/review`,
       {
         vehicleId: id,
         vehicleType: data.type,
@@ -580,7 +580,7 @@ const submitEnquiry = async () => {
     const token = await user.getIdToken();
 
     await axios.post(
-      "${import.meta.env.VITE_API_URL}/api/enquiry/create",
+      `${import.meta.env.VITE_API_URL}/api/enquiry/create`,
       {
         listingId: data._id,
         listingType: data.type,
@@ -629,7 +629,7 @@ const submitReply = async (reviewId) => {
     const token = await user.getIdToken();
 
     await axios.post(
-      "${import.meta.env.VITE_API_URL}/api/vehicle-detail/reply",
+      `${import.meta.env.VITE_API_URL}/api/vehicle-detail/reply`,
       {
         reviewId,
         message: replyMsg,
@@ -1809,7 +1809,7 @@ try {
   });
 
   const res = await axios.post(
-    "${import.meta.env.VITE_API_URL}/api/vehicle-detail/check-availability",
+    `${import.meta.env.VITE_API_URL}/api/vehicle-detail/check-availability`,
     {
       listingId: id,
       pickupDate: start,

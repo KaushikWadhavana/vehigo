@@ -228,7 +228,7 @@ useEffect(() => {
 
 useEffect(() => {
   const loadFilters = async () => {
-    const res = await fetch("${import.meta.env.VITE_API_URL}/api/listing/filters");
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/listing/filters`);
     const data = await res.json();
     setFilters(data);
   };
@@ -249,7 +249,7 @@ useEffect(() => {
 useEffect(() => {
   const fetchLocations = async () => {
     try {
-      const res = await fetch("${import.meta.env.VITE_API_URL}/api/listing");
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/listing`);
       const data = await res.json();
       setLocations(data);
     } catch (err) {
