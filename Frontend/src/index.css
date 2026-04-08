@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Full height layout */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* Global font + theme */
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  @apply bg-gray-100 dark:bg-[#020617] text-gray-900 dark:text-gray-100;
+}
+
+/* Prevent PDF section splitting */
+.pdf-section{
+  page-break-inside: avoid;
+  break-inside: avoid;
+}

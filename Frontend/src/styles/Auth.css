@@ -1,0 +1,228 @@
+.register-container {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at center, rgba(255, 140, 0, 0.08), transparent 60%),
+    linear-gradient(135deg, #0b1220, #0f172a 55%, #0b1220);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.register-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04), transparent 70%);
+  pointer-events: none;
+}
+.register-box {
+  width: 100%;
+  max-width: 420px;
+  padding: 36px 32px;
+  border-radius: 22px;
+  position: relative;
+  z-index: 2;
+
+  background: rgba(16, 24, 42, 0.88);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.7);
+  animation: rise 0.6s ease;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 14px;   
+}
+
+.brand-logo {
+  width: 140px;
+  max-width: 60vw;
+  height: auto;
+  margin-bottom: 8px;    
+  cursor: pointer;
+  filter: drop-shadow(0 14px 35px rgba(0, 0, 0, 0.6));
+}
+
+.brand h2 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 2px;    
+}
+
+.brand p {
+  font-size: 15px;
+  color: #9ca3af;
+  margin-bottom: 8px;    
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;             
+}
+
+.register-form input {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.9);
+  color: #f9fafb;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.register-form input::placeholder {
+  color: #9ca3af;
+}
+
+.register-form input:focus {
+  border-color: #fb923c;
+  box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.2);
+  background: #0b1220;
+}
+
+.register-form button {
+  margin-top: 12px;      /* 🔥 reduced */
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  color: #0b1220;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(251, 146, 60, 0.45);
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;        
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.divider span {
+  margin: 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9ca3af;
+}
+.google-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e5e7eb;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.google-btn:hover {
+  border-color: #fb923c;
+  background: rgba(251, 146, 60, 0.08);
+  color: #fb923c;
+}
+
+.login-link {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.login-link span {
+  color: #fb923c;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-link span:hover {
+  text-decoration: underline;
+}
+
+.back-home {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #e5e7eb;
+  font-size: 13px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 480px) {
+  .register-box {
+    padding: 28px 22px;
+  }
+
+  .brand-logo {
+    width: 110px;
+  }
+
+  .brand h2 {
+    font-size: 24px;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.brand-logo {
+  width: 140px;
+  height: auto;
+  cursor: pointer;
+
+   filter: brightness(0.95)
+          drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6));
+
+  transition:
+    filter 0.35s ease,
+    transform 0.35s ease;
+}
+
+.brand-logo:hover {
+   filter: brightness(1.15)
+          drop-shadow(0 14px 40px rgba(251, 146, 60, 0.45));
+
+  transform: translateY(-2px);
+}
