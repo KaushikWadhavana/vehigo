@@ -59,7 +59,7 @@ const navigate = useNavigate();
     const token = await auth.currentUser.getIdToken();
 
     const res = await axios.get(
-      "${import.meta.env.VITE_API_URL}E_API_URL}/api/reservations/admin-payments",
+      `${import.meta.env.VITE_API_URL}/api/reservations/admin-payments`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -94,10 +94,10 @@ useEffect(() => {
   const token = await auth.currentUser.getIdToken();
 
 const [monthlyRes, carRes] = await Promise.all([
-  axios.get("${import.meta.env.VITE_API_URL}/api/reservations/analytics/monthly-reservations", {
+  axios.get(`${import.meta.env.VITE_API_URL}/api/reservations/analytics/monthly-reservations`, {
     headers: { Authorization: `Bearer ${token}` },
   }),
-  axios.get("${import.meta.env.VITE_API_URL}/api/reservations/analytics/top-vehicles", {
+  axios.get(`${import.meta.env.VITE_API_URL}/api/reservations/analytics/top-vehicles`, {
     headers: { Authorization: `Bearer ${token}` },
   }),
 ]);

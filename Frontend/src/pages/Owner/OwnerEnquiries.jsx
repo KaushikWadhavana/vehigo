@@ -34,7 +34,7 @@ const [loadingReply, setLoadingReply] = useState(false);
     try {
       const token = await auth.currentUser.getIdToken();
 
-      const res = await fetch("${import.meta.env.VITE_API_URL}/api/enquiry/owner", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/enquiry/owner`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

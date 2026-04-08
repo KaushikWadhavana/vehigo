@@ -70,7 +70,7 @@ function Register() {
 
 try {
   // 🔥 CHECK BEFORE FIREBASE CREATION
-const checkRes = await fetch("${import.meta.env.VITE_API_URL}/api/auth/check-owner-email", {
+const checkRes = await fetch('${import.meta.env.VITE_API_URL}/api/auth/check-owner-email', {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -112,7 +112,7 @@ Swal.fire({
 await user.reload();
 const token = await user.getIdToken();
 
-const res = await fetch("${import.meta.env.VITE_API_URL}/api/auth/sync", {
+const res = await fetch('${import.meta.env.VITE_API_URL}/api/auth/sync', {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -196,7 +196,7 @@ const handleGoogle = async () => {
     await user.reload();
 const token = await user.getIdToken();
 
-    const res = await fetch("${import.meta.env.VITE_API_URL}/api/auth/sync", {
+    const res = await fetch('${import.meta.env.VITE_API_URL}/api/auth/sync', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

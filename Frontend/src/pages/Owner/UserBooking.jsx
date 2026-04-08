@@ -77,7 +77,7 @@ const fetchUsers = async () => {
     const token = await auth.currentUser.getIdToken();
 
     const res = await fetch(
-      "${import.meta.env.VITE_API_URL}/api/bookings/owner-bookings",
+      `${import.meta.env.VITE_API_URL}/api/bookings/owner-bookings`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

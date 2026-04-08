@@ -27,7 +27,7 @@ export default function OwnerUserPayments() {
     const token = await auth.currentUser.getIdToken();
 
     const res = await axios.get(
-      "${import.meta.env.VITE_API_URL}/api/bookings/owner-payments",
+      `${import.meta.env.VITE_API_URL}/api/bookings/owner-payments`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

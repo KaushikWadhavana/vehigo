@@ -139,7 +139,7 @@ if (!user) {
 const token = await user.getIdToken();
 
 await axios.post(
-  "${import.meta.env.VITE_API_URL}/api/vehicles/bikes",
+  `${import.meta.env.VITE_API_URL}/api/vehicles/bikes`,
   fd,
   {
     headers: {

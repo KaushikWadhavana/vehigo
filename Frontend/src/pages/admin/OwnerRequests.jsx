@@ -55,7 +55,7 @@ useEffect(() => {
       const token = await firebaseUser.getIdToken();
 
       const res = await axios.get(
-        "${import.meta.env.VITE_API_URL}/api/owner/all",
+        `${import.meta.env.VITE_API_URL}/api/owner/all`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

@@ -163,7 +163,7 @@ const calculatedEndDate = (() => {
 })();
 
     const res = await fetch(
-      "${import.meta.env.VITE_API_URL}/api/reservations/vehicles-status",
+      `${import.meta.env.VITE_API_URL}/api/reservations/vehicles-status`,
       {
         method: "POST",
         headers: {
@@ -655,7 +655,7 @@ const loadCustomer = async () => {
 
 try{
 
-const res = await fetch("${import.meta.env.VITE_API_URL}/api/reservations/customers")
+const res = await fetch(`${import.meta.env.VITE_API_URL}/api/reservations/customers`)
 const data = await res.json()
 
 const found = data.find(c => c._id === selectedCustomer)
@@ -1091,7 +1091,7 @@ const loadCustomers = async () => {
 
 try{
 
-const res = await fetch("${import.meta.env.VITE_API_URL}/api/reservations/customers")
+const res = await fetch(`${import.meta.env.VITE_API_URL}/api/reservations/customers`)
 const data = await res.json()
 
 setCustomers(data)
@@ -1928,7 +1928,7 @@ const formattedExtras = (selectedExtras || []).map(e => ({
   type: e.type
 }));
 
-const res = await fetch("${import.meta.env.VITE_API_URL}/api/reservations",{
+const res = await fetch(`${import.meta.env.VITE_API_URL}/api/reservations`,{
 
 method:"POST",
 

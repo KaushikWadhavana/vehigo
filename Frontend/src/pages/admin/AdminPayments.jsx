@@ -24,14 +24,14 @@ export default function AdminPayments() {
     const token = await auth.currentUser.getIdToken();
 
 const bookingRes = await axios.get(
-  "${import.meta.env.VITE_API_URL}/api/bookings/admin-payments",
+  `${import.meta.env.VITE_API_URL}/api/bookings/admin-payments`,
   {
     headers: { Authorization: `Bearer ${token}` },
   }
 );
 
 const reservationRes = await axios.get(
-  "${import.meta.env.VITE_API_URL}/api/reservations/admin-payments",
+  `${import.meta.env.VITE_API_URL}/api/reservations/admin-payments`,
   {
     headers: { Authorization: `Bearer ${token}` },
   }

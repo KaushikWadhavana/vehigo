@@ -22,7 +22,7 @@ const [reasonModal, setReasonModal] = useState({
     const token = await auth.currentUser.getIdToken();
 
     const res = await fetch(
-      "${import.meta.env.VITE_API_URL}/api/bookings/admin-bookings",
+      `${import.meta.env.VITE_API_URL}/api/bookings/admin-bookings`,
       { headers: { Authorization: `Bearer ${token}` } }
     );
 
