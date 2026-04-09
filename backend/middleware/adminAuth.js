@@ -2,9 +2,19 @@ const User = require("../models/User");
 
 const adminAuth = async (req, res, next) => {
   try {
-    const user = await User.findOne({ firebaseUid: req.user.uid });
+    let user = await User.findOne({ firebaseUid: req.user.uid });
 
-    if (!user || !["admin", "owner"].includes(user.role)) {
+    // ✅ AUTO CREATE USER IF NOT FOUND
+    if (!user) {
+      user = await User.create({
+        firebaseUid: req.user.uid,
+        email: req.user.email,
+        role: "owner", // default role
+      });
+    }
+
+    // ✅ ROLE CHECK
+    if (!["admin", "owner"].includes(user.role)) {
       return res.status(403).json({ message: "Access denied" });
     }
 
@@ -12,6 +22,7 @@ const adminAuth = async (req, res, next) => {
 
     next();
   } catch (err) {
+    console.error("ADMIN AUTH ERROR:", err);
     res.status(500).json({ message: "Admin verification failed" });
   }
 };
