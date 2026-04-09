@@ -78,6 +78,6 @@ router.put(
 );
 router.put("/:id/update-basic", firebaseAuth, updateVehicleBasic);
 
-router.get("/bikes", getBikes);
+router.get("/bikes", firebaseAuth, adminAuth, getBikes);
 
 module.exports = router;
