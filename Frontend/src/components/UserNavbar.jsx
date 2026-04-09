@@ -151,10 +151,10 @@ const displayName = profile?.name || firebaseUser?.displayName || "User";
 <div className="hidden md:flex items-center gap-3 bg-gray-100/70 backdrop-blur rounded-full p-1">
 
   <NavItem
-    to="/"
+    to="/userhome"
     label="Home"
     icon={<Home size={16} />}
-    active={location.pathname === "/"}
+    active={location.pathname === "/userhome"}
   />
 
   <NavItem
@@ -350,7 +350,7 @@ location.pathname.startsWith("/user-payments")
 <nav className="mt-2 flex flex-col">
 
   <DrawerBtn icon={<LayoutDashboard />} label="Dashboard" onClick={() => {
-    navigate("/");
+    navigate("/userhome");
     setDrawerOpen(false);
 
   }} />
