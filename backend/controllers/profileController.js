@@ -10,23 +10,19 @@ exports.getProfile = async (req, res) => {
     let profile = await Profile.findOne({ firebaseUid });
 
     if (!profile) {
-      const user = await User.findOne({ firebaseUid });
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-
-profile = await Profile.create({
-  firebaseUid: user.firebaseUid,
-  name: req.user.name || user.name || "",
-  email: user.email,
-  phone: user.phone || "",
-  profileImage: req.user.picture || "",
-  provider: user.provider,
-  role: user.role,
-});
+      profile = await Profile.create({
+        firebaseUid,
+        name: req.user.name || "",
+        email: req.user.email || "",
+        phone: "",
+        profileImage: req.user.picture || "",
+        provider: req.user.provider || "password",
+        role: req.user.role || "user",
+      });
     }
 
     res.status(200).json(profile);
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

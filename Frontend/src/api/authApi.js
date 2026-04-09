@@ -11,16 +11,7 @@ export const syncUser = async (token, body = {}) => {
   return res.data.user;
 };
 
-export const checkUserExists = async (token) => {
-  const res = await API.post(
-    "/auth/check-user",
-    {},
-    {
-      headers: { Authorization: `Bearer ${token}` },
-    }
-  );
-  return res.data;
-};
+
 
 export const findEmailByPhone = async (phone) => {
   const res = await API.post("/auth/find-email", { phone });

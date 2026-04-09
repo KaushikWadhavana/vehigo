@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { checkUserExists } from "../api/authApi";
+import { syncUser } from "../api/authApi";
 
 function AdminProtectedRoute({ children }) {
   const [loading, setLoading] = useState(true);
@@ -17,9 +17,8 @@ function AdminProtectedRoute({ children }) {
 
       try {
         const token = await currentUser.getIdToken();
-        const { user } = await checkUserExists(token);
+        const user = await syncUser(token);
 
-        
         if (user?.role === "admin") {
           setIsAdmin(true);
         }
