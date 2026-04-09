@@ -43,7 +43,13 @@ exports.addVehicle = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    const parsedFeatures = JSON.parse(features || "[]");
+let parsedFeatures = [];
+
+try {
+  parsedFeatures = JSON.parse(features || "[]");
+} catch (e) {
+  console.error("❌ Features parse error:", features);
+}
     if (!parsedFeatures.length) {
       return res.status(400).json({ message: "Select at least one feature" });
     }
@@ -70,6 +76,16 @@ for (let i = 0; i < documentFiles.length; i++) {
   });
 }
 
+let parsedPricing = {};
+let parsedExtras = [];
+let parsedDamages = [];
+let parsedFaqs = [];
+
+try { parsedPricing = JSON.parse(pricing || "{}"); } catch {}
+try { parsedExtras = JSON.parse(extras || "[]"); } catch {}
+try { parsedDamages = JSON.parse(damages || "[]"); } catch {}
+try { parsedFaqs = JSON.parse(faqs || "[]"); } catch {}
+
 const vehicle = await Vehicle.create({
   owner: req.mongoUser._id,
   addedBy: req.mongoUser.role === "admin" ? "admin" : "owner",
@@ -88,10 +104,10 @@ const vehicle = await Vehicle.create({
   plateNumber,
   imageUrl,
   features: parsedFeatures,
-  pricing: JSON.parse(pricing || "{}"),
-  extras: JSON.parse(extras || "[]"),
-  damages: JSON.parse(damages || "[]"),
-  faqs: JSON.parse(faqs || "[]"),
+pricing: parsedPricing,
+extras: parsedExtras,
+damages: parsedDamages,
+faqs: parsedFaqs,
   documents: uploadedDocuments,
 
   status: req.mongoUser.role === "admin" ? "approved" : "pending"
