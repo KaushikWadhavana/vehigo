@@ -10,7 +10,9 @@ exports.addBike = async (req, res) => {
 
     const imageFile = req.files.image[0];
     const documentFiles = req.files.documents || [];
-    const docTypes = req.body.documentsType || {};
+     const docTypes = Array.isArray(req.body.documentsType)
+  ? req.body.documentsType
+  : Object.values(req.body.documentsType || {});
 
 const {
   name,
