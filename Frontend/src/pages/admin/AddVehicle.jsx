@@ -218,12 +218,12 @@ const finishVehicle = async () => {
     });
 
     fd.append("image", draft.basic.image);
-    fd.append("features", JSON.stringify(draft.features));
-    fd.append("pricing", JSON.stringify(draft.pricing));
-    fd.append("extras", JSON.stringify(draft.extras));
-    fd.append("damages", JSON.stringify(draft.damages));
-    fd.append("faqs", JSON.stringify(draft.faqs));
-
+fd.append("features", JSON.stringify(draft.features || []));
+fd.append("pricing", JSON.stringify(draft.pricing || {}));
+fd.append("extras", JSON.stringify(draft.extras || []));
+fd.append("damages", JSON.stringify(draft.damages || []));
+fd.append("faqs", JSON.stringify(draft.faqs || []));
+ 
     draft.documents.forEach((doc, i) => {
       if (!(doc.file instanceof File)) return;
       fd.append("documents", doc.file);
