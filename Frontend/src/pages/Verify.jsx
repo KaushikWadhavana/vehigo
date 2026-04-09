@@ -164,3 +164,4 @@ const handleResend = async () => {
   );
 }
 
+export default Verify;
