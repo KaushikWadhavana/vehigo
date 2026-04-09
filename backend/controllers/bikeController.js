@@ -27,6 +27,21 @@ const {
   faqs,
 } = req.body;
 
+// ✅ SAFE JSON PARSE (ADD THIS BLOCK HERE)
+let parsedPricing = {};
+let parsedFaqs = [];
+
+try {
+  parsedPricing = JSON.parse(pricing || "{}");
+} catch (e) {
+  console.error("❌ Pricing parse error:", pricing);
+}
+
+try {
+  parsedFaqs = JSON.parse(faqs || "[]");
+} catch (e) {
+  console.error("❌ FAQs parse error:", faqs);
+}
     // 2️⃣ Required validation
     if (
       !name ||
@@ -69,6 +84,7 @@ if (!req.mongoUser) {
   });
 }
 
+
 // 5️⃣ Create bike
 const bike = await Bike.create({
   owner: req.mongoUser._id,
@@ -85,9 +101,9 @@ const bike = await Bike.create({
   plateNumber,
   mileage,
   imageUrl,
-  pricing: JSON.parse(pricing || "{}"),
+pricing: parsedPricing,
+faqs: parsedFaqs,
   documents: uploadedDocuments,
-  faqs: JSON.parse(faqs || "[]"),
 
   status: req.mongoUser.role === "admin" ? "approved" : "pending"
 });
