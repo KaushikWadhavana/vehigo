@@ -50,6 +50,50 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
+app.get("/api/location/reverse", async (req, res) => {
+  try {
+    const { lat, lon } = req.query;
+
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`,
+      {
+        headers: {
+          "User-Agent": "vehigo-app", // 🔥 REQUIRED
+        },
+      }
+    );
+
+    const data = await response.json();
+    res.json(data);
+
+  } catch (err) {
+    console.error("Reverse location error:", err);
+    res.status(500).json({ message: "Failed to fetch location" });
+  }
+});
+
+app.get("/api/location/search", async (req, res) => {
+  try {
+    const { q } = req.query;
+
+    const response = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${q}`,
+      {
+        headers: {
+          "User-Agent": "vehigo-app",
+        },
+      }
+    );
+
+    const data = await response.json();
+    res.json(data);
+
+  } catch (err) {
+    res.status(500).json({ message: "Search failed" });
+  }
+});
+
+
 
 // Public routes (NO TOKEN REQUIRED)
 app.use("/api/auth", authRoutes);

@@ -72,14 +72,7 @@ const handleResend = async () => {
 
   try {
     setResendLoading(true);
-
-    await user.reload(); // ✅ IMPORTANT
-
-    await sendEmailVerification(user, {
-      url: "https://vehigo-two.vercel.app/login", // 🔥 REQUIRED
-      handleCodeInApp: false,
-    });
-
+    await sendEmailVerification(user);
     setCooldown(30);
 
     Swal.fire({
@@ -91,12 +84,10 @@ const handleResend = async () => {
     });
 
   } catch (err) {
-    console.error(err); // 🔥 add this
-
     Swal.fire({
       icon: "error",
       title: "Error",
-      text: err.message || "Failed to resend verification email.",
+      text: "Failed to resend verification email.",
     });
   } finally {
     setResendLoading(false);
@@ -164,4 +155,3 @@ const handleResend = async () => {
   );
 }
 
-export default Verify;

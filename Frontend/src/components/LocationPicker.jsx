@@ -29,10 +29,9 @@ function LocationMarker({ onSelect }) {
       setPosition(e.latlng);
 
       // 🔥 FIXED CORS (using open proxy)
-      const res = await fetch(
-        `https://corsproxy.io/?https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
-      );
-
+   const res = await fetch(
+  `${import.meta.env.VITE_API_URL}/api/location/reverse?lat=${lat}&lon=${lng}`
+);
       const data = await res.json();
 
       onSelect({
@@ -60,10 +59,9 @@ export default function LocationPicker({ onSelect }) {
         return;
       }
 
-      const res = await fetch(
-        `https://corsproxy.io/?https://nominatim.openstreetmap.org/search?format=json&q=${query}`
-      );
-
+   const res = await fetch(
+  `${import.meta.env.VITE_API_URL}/api/location/search?q=${query}`
+);
       const data = await res.json();
       setSuggestions(data.slice(0, 5));
     }, 400);
@@ -76,9 +74,9 @@ export default function LocationPicker({ onSelect }) {
     navigator.geolocation.getCurrentPosition(async (pos) => {
       const { latitude, longitude } = pos.coords;
 
-      const res = await fetch(
-        `https://corsproxy.io/?https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
-      );
+  const res = await fetch(
+  `${import.meta.env.VITE_API_URL}/api/location/reverse?lat=${latitude}&lon=${longitude}`
+);
 
       const data = await res.json();
 
