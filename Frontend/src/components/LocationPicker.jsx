@@ -62,9 +62,10 @@ export default function LocationPicker({ onSelect }) {
    const res = await fetch(
   `${import.meta.env.VITE_API_URL}/api/location/search?q=${query}`
 );
-      const data = await res.json();
-      setSuggestions(data.slice(0, 5));
-    }, 400);
+   const data = await res.json();
+
+// ✅ FIX HERE
+setSuggestions(Array.isArray(data) ? data.slice(0, 5) : []);    }, 400);
 
     return () => clearTimeout(delay);
   }, [query]);
