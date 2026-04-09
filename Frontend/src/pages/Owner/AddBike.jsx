@@ -119,10 +119,8 @@ const requiredDocs = ["rc", "policy", "puc"];
     });
 
     fd.append("image", draft.basic.image);
-    fd.append("pricing", JSON.stringify(draft.pricing));
-
-    fd.append("faqs", JSON.stringify(draft.faqs));
-
+ fd.append("pricing", JSON.stringify(draft.pricing || {}));
+fd.append("faqs", JSON.stringify(draft.faqs || []));
     draft.documents.forEach((doc, i) => {
       if (!(doc.file instanceof File)) return;
       fd.append("documents", doc.file);
