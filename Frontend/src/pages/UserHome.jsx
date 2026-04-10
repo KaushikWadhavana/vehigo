@@ -637,7 +637,7 @@ onChange={async (e) => {
       </h2>
       <div className="w-10 h-[3px] bg-orange-400 mx-auto my-4 rounded"></div>
       <p className="text-gray-600">
-        Vehicles and bikes added by admins, ready for rental
+Top vehicles and bikes ready for your next ride
       </p>
     </div>
 
