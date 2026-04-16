@@ -46,11 +46,19 @@ const categoryMap = {};
 
 const mergedCategories = Object.values(categoryMap);
     res.json({
-      brands: [...new Set([...vehicleBrands, ...bikeBrands])],
+brands: [
+  ...new Set(
+    [...vehicleBrands, ...bikeBrands].map(b => b.trim())
+  )
+],
       categories: mergedCategories,
       years: [...new Set([...vehicleYears, ...bikeYears])].sort((a, b) => b - a),
     
-fuels: [...new Set([...vehicleFuels, ...bikeFuels])],
+fuels: [
+  ...new Set(
+    [...vehicleFuels, ...bikeFuels].map(f => f.trim())
+  )
+],
       bikeTypes,
       transmissions,
       seats,
