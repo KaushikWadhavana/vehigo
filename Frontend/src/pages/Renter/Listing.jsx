@@ -96,7 +96,6 @@ const [sortBy, setSortBy] = useState("newest");
 const [total, setTotal] = useState(0);
 
 const toggleFilter = (key, value) => {
-
   const updatedFilters = {
     ...selectedFilters,
     [key]: selectedFilters[key].includes(value)
@@ -105,19 +104,9 @@ const toggleFilter = (key, value) => {
   };
 
   setSelectedFilters(updatedFilters);
-
-  // run search immediately
-  fetchResults(
-    1,
-    location,
-    pickupDate,
-    pickupTime,
-    returnDate,
-    returnTime
-  );
-
   setPage(1);
 };
+
 const formatLocalDate = (date) => {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, "0");
@@ -160,7 +149,7 @@ if (selectedFilters.fuels.length)
 if (selectedFilters.bikeTypes.length)
   params.append("bikeTypes", selectedFilters.bikeTypes.join(","));
 
-if (selectedFilters.features.length)
+if (selectedFilters.features && selectedFilters.features.length > 0)
   params.append("features", selectedFilters.features.join(","));
 
 if (selectedFilters.transmissions.length)
@@ -225,7 +214,6 @@ useEffect(() => {
     returnTime
   );
 }, [page, limit, sortBy, JSON.stringify(selectedFilters)]);
-
 useEffect(() => {
   const loadFilters = async () => {
     const res = await fetch(`${import.meta.env.VITE_API_URL}/api/listing/filters`);
