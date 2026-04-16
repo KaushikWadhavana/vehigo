@@ -31,6 +31,11 @@ import {
   Wallet
 } from "lucide-react";
 export default function Checkout() {
+
+  useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
+
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -817,7 +822,7 @@ const transactionId = isOnline
     </p>
   </div>
 
-  <div className="flex items-center justify-between relative">
+  <div className="flex items-center justify-between relative gap-4 overflow-x-auto px-2">
 
     {/* CONNECTOR LINE */}
     <div className="absolute top-6 left-0 right-0 h-[2px] bg-gray-200"></div>
@@ -876,11 +881,11 @@ const transactionId = isOnline
 
 
       <div className="bg-[#eef2f4] py-12">
-        <div className={`max-w-7xl mx-auto grid gap-8 px-6 ${
-  activeStep === 5 ? "grid-cols-1" : "grid-cols-3"
-}`}>
+        <div className={`max-w-7xl mx-auto grid gap-6 px-4 md:px-6 
+  ${activeStep === 5 ? "grid-cols-1" : "grid-cols-1 lg:grid-cols-3"}
+`}>
           {/* LEFT SIDE */}
-          <div className="col-span-2 space-y-8">
+          <div className="col-span-1 lg:col-span-2 space-y-6 md:space-y-8">
             {/* ================= STEP 1 : LOCATION ================= */}
 {activeStep === 1 && (
   <>
@@ -897,7 +902,7 @@ const transactionId = isOnline
               </div>
 
               {/* Options */}
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 {/* DELIVERY */}
                 <button
                   onClick={() => setDeliveryType("delivery")}
@@ -947,7 +952,7 @@ const transactionId = isOnline
             </div>
 
             {/* ================= LOCATION ================= */}
-            <div className="bg-white rounded-xl shadow-sm p-8">
+            <div className="bg-white rounded-xl shadow-sm p-4 md:p-6 lg:p-8">
               <div className="flex items-center gap-3 mb-6">
                 <div className="bg-orange-100 text-orange-500 p-2 rounded-md">
                   <MapPin size={18} />
@@ -1053,7 +1058,7 @@ const transactionId = isOnline
             </div>
 
             {/* ================= BOOKING TYPE & TIME ================= */}
-            <div className="bg-white rounded-2xl shadow-sm p-8">
+            <div className="bg-white rounded-2xl shadow-sm p-4 md:p-6 lg:p-8">
               {/* HEADER */}
               <div className="flex items-center gap-3 mb-8">
                 <div className="bg-orange-100 text-orange-500 p-3 rounded-lg">
@@ -1065,7 +1070,7 @@ const transactionId = isOnline
               </div>
 
               {/* PLAN SELECTION */}
-              <div className="grid grid-cols-4 gap-6 mb-10">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-10">
                 {[
                   {
                     key: "daily",
@@ -1112,7 +1117,7 @@ const transactionId = isOnline
               </div>
 
               {/* DATE & TIME GRID */}
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
                 {/* START DATE */}
                 <div>
                   <label className="font-medium text-gray-700">
@@ -1193,7 +1198,7 @@ const transactionId = isOnline
               </div>
 
               {/* ACTION BUTTONS */}
-              <div className="flex justify-end gap-4 mt-12">
+              <div className="flex flex-col md:flex-row justify-end gap-4 mt-12">
                 <button
                   onClick={() => navigate(-1)}
                   className="bg-black text-white px-6 py-3 rounded-lg"
@@ -1255,7 +1260,7 @@ const transactionId = isOnline
     // ================= SUCCESS =================
     setActiveStep(2);
   }}
-  className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-3 rounded-lg"
+  className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-3 rounded-lg w-full md:w-auto"
 >
   Continue Booking
 </button>
@@ -1270,7 +1275,7 @@ const transactionId = isOnline
 
 {/* ================= EXTRA SERVICES ================= */}
 {vehicle.type === "Vehicle" && vehicle.extras?.length > 0 && (
-  <div className="bg-white rounded-2xl shadow-sm p-8 border">
+  <div className="bg-white rounded-2xl shadow-sm p-4 md:p-6 lg:p-8 border">
     {/* HEADER */}
     <div className="flex items-center gap-3 mb-8">
       <div className="bg-orange-100 text-orange-500 p-2 rounded-lg">
@@ -1346,7 +1351,7 @@ const transactionId = isOnline
 )}
 
 {/* ================= DRIVER DETAILS ================= */}
-<div className="bg-white rounded-2xl shadow-sm p-8 border">
+<div className="bg-white rounded-2xl shadow-sm p-4 md:p-6 lg:p-8 border">
 
   {/* HEADER */}
   <div className="flex items-center gap-3 mb-8">
@@ -1359,7 +1364,7 @@ const transactionId = isOnline
   </div>
 
 {/* DRIVER TYPE */}
-<div className="grid grid-cols-2 gap-6 mb-10">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-10">
   {[
     { key: "self", label: "Self Driver" },
   ].map((type) => (
@@ -1389,7 +1394,7 @@ const transactionId = isOnline
 </div>
 
 {/* INPUT FIELDS */}
-<div className="grid grid-cols-2 gap-6">
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
 
   {/* FIRST NAME */}
   <InputField
@@ -1631,7 +1636,7 @@ Swal.fire(
   // SUCCESS
   setActiveStep(3);
 }}
-    className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-3 rounded-lg"
+    className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-3 rounded-lg w-full md:w-auto"
   >
     Continue
   </button>
@@ -1639,7 +1644,7 @@ Swal.fire(
   </div>
 )}
 {activeStep === 3 && (
-  <div className="bg-white rounded-2xl shadow-sm p-8 border space-y-8">
+  <div className="bg-white rounded-2xl shadow-sm p-4 md:p-6 lg:p-8 border space-y-8">
 
     {/* HEADER */}
     <div className="flex justify-between items-center">
@@ -1659,7 +1664,7 @@ Swal.fire(
     </div>
 
     {/* FORM */}
-    <div className="grid grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
 
       <InputField label="Full Name *" value={billingName} onChange={setBillingName} />
       <InputField label="Email *" value={billingEmail} onChange={setBillingEmail} />
@@ -1699,7 +1704,7 @@ Swal.fire(
 
 <button
   onClick={() => setActiveStep(4)}
-  className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-3 rounded-lg"
+  className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-3 rounded-lg w-full md:w-auto"
 >
   Continue to Payment
 </button>
@@ -1855,7 +1860,7 @@ Swal.fire(
 )}
 
 {activeStep === 5 && (
-<div id="invoice" className="bg-white max-w-6xl mx-auto p-10 rounded-2xl shadow space-y-8">
+<div id="invoice" className="bg-white max-w-6xl mx-auto p-4 md:p-6 lg:p-10 rounded-2xl shadow space-y-8">
 
   {/* ===== HEADER ===== */}
   <div className="text-center">
@@ -1896,7 +1901,7 @@ Swal.fire(
   </div>
 
   {/* ===== GRID ===== */}
-  <div className="grid md:grid-cols-2 gap-6">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
     {/* ===== CAR PRICING ===== */}
     <div className="border rounded-lg p-5">
@@ -2085,7 +2090,7 @@ Swal.fire(
 
           {/* ================= RIGHT SIDE ================= */}
           {activeStep !== 5 && (
-<div className="col-span-1 space-y-6">
+<div className="col-span-1 space-y-6 hidden lg:block">
             {/* BOOKING DETAILS DROPDOWN */}
             {activeStep >= 1 && (
             <div className="bg-white rounded-xl shadow-sm overflow-hidden">
