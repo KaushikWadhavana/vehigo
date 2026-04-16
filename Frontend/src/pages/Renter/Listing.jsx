@@ -135,7 +135,10 @@ const fetchResults = async (
   params.append("sortBy", sortBy);
 
   if (selectedFilters.brands.length)
-  params.append("brands", selectedFilters.brands.join(","));
+  params.append(
+  "brands",
+selectedFilters.brands.join(",")
+);
 
 if (selectedFilters.categories.length)
   params.append("categories", selectedFilters.categories.join(","));
@@ -807,7 +810,7 @@ if (diffDays > 365) {
               {item.name}
             </div>
             <div className="text-xs text-gray-500">
-              {item.brand}
+              {item.brand?.trim()}
             </div>
           </div>
         ))}
@@ -1066,7 +1069,7 @@ onClick={() =>
 
           {/* BRAND BADGE */}
           <span className="absolute bottom-3 left-3 bg-white text-gray-800 text-xs font-medium px-3 py-1 rounded-full shadow">
-            {item.brand}
+            {item.brand?.trim()}
           </span>
 
           {/* SLIDER DOTS */}
