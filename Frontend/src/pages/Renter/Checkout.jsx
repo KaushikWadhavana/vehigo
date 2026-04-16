@@ -6,7 +6,7 @@ import { getAuth } from "firebase/auth";
 import LocationPicker from "../../components/LocationPicker";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-
+import { useRef } from "react";
 import {
   ArrowLeft,
   CalendarDays,
@@ -32,10 +32,6 @@ import {
 } from "lucide-react";
 export default function Checkout() {
 
-  useEffect(() => {
-  window.scrollTo(0, 0);
-}, []);
-
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,13 +47,25 @@ const EXTRA_ICONS = {
   toll: Receipt,
   dashcam: Camera,
 };
+
   const vehicleFromState = location.state?.vehicleData;
   const bookingFromState = location.state?.bookingData || {};
   const [openDetails, setOpenDetails] = useState(true);
   const [vehicle, setVehicle] = useState(vehicleFromState || null);
 const [bookingData, setBookingData] = useState(null);
-  const [activeStep, setActiveStep] = useState(1);
   
+const topRef = useRef(null);
+
+const [activeStep, setActiveStep] = useState(1);
+  
+  
+useEffect(() => {
+  topRef.current?.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}, [activeStep]);
+
   const [pickupLocation, setPickupLocation] = useState(
     bookingFromState.deliveryLocation || "",
   );
@@ -812,7 +820,7 @@ const transactionId = isOnline
   return (
     <div className="bg-[#eef2f4] py-10">
 {/* ================= MODERN STEPPER ================= */}
-<div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-md px-10 py-8 mb-10">
+<div ref={topRef} className="max-w-5xl mx-auto bg-white rounded-2xl shadow-md px-10 py-8 mb-10">
   <div className="text-center mb-10">
     <h2 className="text-2xl font-bold text-gray-800">
       Reserve Your Car
