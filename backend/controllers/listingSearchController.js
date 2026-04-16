@@ -46,8 +46,7 @@ const filter = {
 
       /* LOCATION */
       if (location) {
-        const regex = new RegExp(location, "i");
-        filter.mainLocation = regex;
+   filter.mainLocation = { $regex: location, $options: "i" };
       }
 
       /* BRAND */
@@ -66,9 +65,9 @@ const filter = {
       }
 
       /* FUEL */
-      if (fuels) {
-        filter.fuel = { $in: fuels.split(",") };
-      }
+if (fuels) {
+  filter.fuel = { $in: fuels.split(",") };
+}
 
  /* VEHICLE TRANSMISSION */
 if (type === "vehicle" && transmissions) {
@@ -80,25 +79,24 @@ if (type === "bike" && bikeTypes) {
   filter.bikeType = { $in: bikeTypes.split(",") };
 }
       /* FEATURES (vehicles only) */
-      if (features && type === "vehicle") {
-        filter.features = { $all: features.split(",") };
-      }
+  if (features && type === "vehicle") {
+  filter.features = { $in: features.split(",") };
+}
 
       /* PRICE */
-      if (minPrice || maxPrice) {
+   if (minPrice || maxPrice) {
+  filter["pricing.dailyPrice"] = {
+    $exists: true
+  };
 
-        filter["pricing.dailyPrice"] = {};
+  if (minPrice) {
+    filter["pricing.dailyPrice"].$gte = Number(minPrice);
+  }
 
-        if (minPrice) {
-          filter["pricing.dailyPrice"].$gte = Number(minPrice);
-        }
-
-        if (maxPrice) {
-          filter["pricing.dailyPrice"].$lte = Number(maxPrice);
-        }
-
-      }
-
+  if (maxPrice) {
+    filter["pricing.dailyPrice"].$lte = Number(maxPrice);
+  }
+}
       /* SEARCH */
       if (search) {
 
@@ -122,38 +120,11 @@ if (type === "bike" && bikeTypes) {
 
     /* ================= FETCH DATA ================= */
 
-let vehicles = [];
-let bikes = [];
 
-/* ================= DETERMINE WHICH COLLECTION TO QUERY ================= */
-
-const bikeFilterActive = bikeTypes;
-const vehicleFilterActive = transmissions || features;
-
-/* ONLY BIKES */
-if (bikeFilterActive && !vehicleFilterActive) {
-
-  bikes = await Bike.find(bikeFilter).lean();
-
-}
-
-/* ONLY VEHICLES */
-else if (vehicleFilterActive && !bikeFilterActive) {
-
-  vehicles = await Vehicle.find(vehicleFilter).lean();
-
-}
-
-/* BOTH */
-else {
-
-  [vehicles, bikes] = await Promise.all([
-    Vehicle.find(vehicleFilter).lean(),
-    Bike.find(bikeFilter).lean()
-  ]);
-
-}
-
+const [vehicles, bikes] = await Promise.all([
+  Vehicle.find(vehicleFilter).lean(),
+  Bike.find(bikeFilter).lean()
+]);
 
 const allIds = [
   ...vehicles.map(v => v._id),
