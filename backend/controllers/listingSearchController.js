@@ -50,15 +50,31 @@ const filter = {
       }
 
       /* BRAND */
-      if (brands) {
-        filter.brand = { $in: brands.split(",") };
-      }
+/* BRAND (FIXED - CASE INSENSITIVE) */
+/* BRAND (FINAL FIX WITH TRIM) */
+if (brands) {
+  const brandArray = brands.split(",").map(b => b.trim());
 
+  if (!filter.$and) filter.$and = [];
+
+  filter.$and.push({
+    $or: brandArray.map(b => ({
+      brand: { $regex: `^${b}\\s*$`, $options: "i" }
+    }))
+  });
+}
       /* CATEGORY */
-      if (categories) {
-        filter.category = { $in: categories.split(",") };
-      }
+if (categories) {
+  const categoryArray = categories.split(",").map(c => c.trim());
 
+  if (!filter.$and) filter.$and = [];
+
+  filter.$and.push({
+    $or: categoryArray.map(c => ({
+      category: { $regex: `^${c}\\s*$`, $options: "i" }
+    }))
+  });
+}
       /* YEAR */
       if (years) {
         filter.year = { $in: years.split(",").map(Number) };
@@ -66,7 +82,15 @@ const filter = {
 
       /* FUEL */
 if (fuels) {
-  filter.fuel = { $in: fuels.split(",") };
+  const fuelArray = fuels.split(",").map(f => f.trim());
+
+  if (!filter.$and) filter.$and = [];
+
+  filter.$and.push({
+    $or: fuelArray.map(f => ({
+      fuel: { $regex: `^${f}\\s*$`, $options: "i" }
+    }))
+  });
 }
 
  /* VEHICLE TRANSMISSION */
@@ -78,11 +102,10 @@ if (type === "vehicle" && transmissions) {
 if (type === "bike" && bikeTypes) {
   filter.bikeType = { $in: bikeTypes.split(",") };
 }
-      /* FEATURES (vehicles only) */
-  if (features && type === "vehicle") {
-  filter.features = { $in: features.split(",") };
+/* FEATURES (FIXED MULTI SELECT) */
+if (features && type === "vehicle") {
+  filter.features = { $all: features.split(",") };
 }
-
       /* PRICE */
    if (minPrice || maxPrice) {
   filter["pricing.dailyPrice"] = {
@@ -97,20 +120,26 @@ if (type === "bike" && bikeTypes) {
     filter["pricing.dailyPrice"].$lte = Number(maxPrice);
   }
 }
-      /* SEARCH */
-      if (search) {
 
-        const regex = new RegExp(search, "i");
+/* SEARCH (FIXED) */
+if (search) {
 
-        filter.$or = [
-          { name: regex },
-          { brand: regex },
-          { model: regex },
-          { category: regex },
-          { mainLocation: regex }
-        ];
+  const regex = new RegExp(search, "i");
 
-      }
+  if (!filter.$and) filter.$and = [];
+
+  filter.$and.push({
+    $or: [
+      { name: regex },
+      { brand: regex },
+      { model: regex },
+      { category: regex },
+      { mainLocation: regex }
+    ]
+  });
+
+}
+
 
       return filter;
     };
