@@ -15,10 +15,16 @@ const vehicleCategories = await Vehicle.aggregate([
   { $group: { _id: "$category", count: { $sum: 1 } } },
 ]);
 
-    const priceStats = await Vehicle.aggregate([
-      { $group: { _id: null, min: { $min: "$pricing.dailyPrice" }, max: { $max: "$pricing.dailyPrice" } } }
-    ]);
-
+const priceStats = await Vehicle.aggregate([
+  { $match: { status: "approved", isActive: true } },
+  {
+    $group: {
+      _id: null,
+      min: { $min: "$pricing.dailyPrice" },
+      max: { $max: "$pricing.dailyPrice" }
+    }
+  }
+]);
     /* ================= BIKES ================= */
 const bikeBrands = await Bike.distinct("brand", { status: "approved", isActive: true });
 const bikeYears = await Bike.distinct("year", { status: "approved", isActive: true });
@@ -36,17 +42,19 @@ const categoryMap = {};
   }
   categoryMap[c._id].count += c.count;
 });
+  const bikeFuels = await Bike.distinct("fuel", { status: "approved", isActive: true });
 
 const mergedCategories = Object.values(categoryMap);
     res.json({
       brands: [...new Set([...vehicleBrands, ...bikeBrands])],
       categories: mergedCategories,
       years: [...new Set([...vehicleYears, ...bikeYears])].sort((a, b) => b - a),
-      fuels: vehicleFuels,
+    
+fuels: [...new Set([...vehicleFuels, ...bikeFuels])],
       bikeTypes,
       transmissions,
       seats,
-      features: [...new Set(features.flat())],
+      features: [...new Set(features)],
       price: {
         min: priceStats[0]?.min || 0,
         max: priceStats[0]?.max || 10000,
