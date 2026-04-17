@@ -77,7 +77,7 @@ const filteredVehicles = combined
           </h1>
 
           <p className="text-gray-500 dark:text-gray-400 mt-2">
-            Monitor all vehicles registered on the platform
+            Monitor all Admin vehicles registered on the platform
           </p>
 
         </div>
